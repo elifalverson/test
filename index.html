@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JS + Python Mini App</title>
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 520px; margin: 2rem auto; padding: 0 1rem; }
+    .card { border: 1px solid #ccc; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
+    button { padding: .5rem 1rem; margin-right: .5rem; cursor: pointer; }
+    input { padding: .5rem; width: 6rem; margin-right: .5rem; }
+    .out { margin-top: .75rem; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>JS + Python Mini App</h1>
+
+  <div class="card">
+    <h3>JavaScript (onclick)</h3>
+    <input id="js-num" type="number" value="5">
+    <button onclick="jsSquare()">Square it</button>
+    <div class="out" id="js-out">–</div>
+  </div>
+
+  <div class="card">
+    <h3>Python (py-click)</h3>
+    <input id="py-num" type="number" value="5">
+    <button py-click="py_factorial">Factorial</button>
+    <div class="out" id="py-out">–</div>
+  </div>
+
+  <script>
+    function jsSquare() {
+      const n = Number(document.getElementById("js-num").value);
+      document.getElementById("js-out").textContent = `JS says: ${n}² = ${n * n}`;
+    }
+  </script>
+
+  <script type="py">
+    from pyscript import document
+    import math
+
+    def py_factorial(event):
+        n = int(document.getElementById("py-num").value)
+        out = document.getElementById("py-out")
+        if n < 0 or n > 170:
+            out.innerText = "Enter a number from 0 to 170"
+        else:
+            out.innerText = f"Python says: {n}! = {math.factorial(n)}"
+  </script>
+</body>
+</html>
